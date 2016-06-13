@@ -27,6 +27,7 @@
         showOnEmptyLinks: true,
 
         init: function () {
+            console.log('Anchor Preview init');
             this.anchorPreview = this.createPreview();
 
             this.getEditorOption('elementsContainer').appendChild(this.anchorPreview);
@@ -44,13 +45,18 @@
         },
 
         createPreview: function () {
-            var el = this.document.createElement('div');
+            var linkButton, deleteButton, el;
 
+            el = this.document.createElement('div');
             el.id = 'medium-editor-anchor-preview-' + this.getEditorId();
             el.className = 'medium-editor-anchor-preview';
             el.innerHTML = this.getTemplate();
 
-            this.on(el, 'click', this.handleClick.bind(this));
+            linkButton = el.getElementsByClassName('medium-editor-toolbar-anchor-preview-inner');
+            deleteButton = el.getElementsByClassName('medium-editor-toolbar-delete-button');
+
+            this.on(linkButton, 'click', this.handleClick.bind(this));
+            this.on(deleteButton, 'click', this.handleDeleteClick.bind(this));
 
             return el;
         },
@@ -58,6 +64,7 @@
         getTemplate: function () {
             return '<div class="medium-editor-toolbar-anchor-preview" id="medium-editor-toolbar-anchor-preview">' +
                 '    <a class="medium-editor-toolbar-anchor-preview-inner"></a>' +
+                '    <div class="medium-editor-toolbar-delete-button">&times;</div>' +
                 '</div>';
         },
 
@@ -171,6 +178,14 @@
             }
 
             this.hidePreview();
+        },
+
+        handleDeleteClick: function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            console.log('kill link');
         },
 
         handleAnchorMouseout: function () {

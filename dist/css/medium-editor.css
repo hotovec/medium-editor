@@ -69,6 +69,46 @@
 .medium-editor-anchor-preview-active {
   visibility: visible; }
 
+.medium-editor-toolbar-anchor-preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+
+.medium-editor-anchor-preview a {
+  margin: 0;
+  padding-left: 10px; }
+
+.medium-editor-toolbar-delete-button {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 100%;
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 22px;
+  line-height: 22px;
+  width: 25px;
+  padding: 0;
+  display: block;
+  height: 25px;
+  overflow: hidden; }
+  .medium-editor-toolbar-delete-button:hover {
+    color: red;
+    background-color: white; }
+
+/*.medium-editor-anchor-preview {
+    visibility: visible !important;
+}*/
 .medium-editor-dragover {
   background: #ddd; }
 
@@ -206,14 +246,14 @@
   content: "";
   display: table; }
 
-[data-medium-editor-element] {
+.medium-editor-element {
   word-wrap: break-word;
   min-height: 30px; }
-  [data-medium-editor-element] img {
+  .medium-editor-element img {
     max-width: 100%; }
-  [data-medium-editor-element] sub {
+  .medium-editor-element sub {
     vertical-align: sub; }
-  [data-medium-editor-element] sup {
+  .medium-editor-element sup {
     vertical-align: super; }
 
 .medium-editor-hidden {

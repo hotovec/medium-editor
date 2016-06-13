@@ -3981,6 +3981,7 @@ MediumEditor.extensions = {};
         showOnEmptyLinks: true,
 
         init: function () {
+            console.log('Anchor Preview init');
             this.anchorPreview = this.createPreview();
 
             this.getEditorOption('elementsContainer').appendChild(this.anchorPreview);
@@ -3998,13 +3999,18 @@ MediumEditor.extensions = {};
         },
 
         createPreview: function () {
-            var el = this.document.createElement('div');
+            var linkButton, deleteButton, el;
 
+            el = this.document.createElement('div');
             el.id = 'medium-editor-anchor-preview-' + this.getEditorId();
             el.className = 'medium-editor-anchor-preview';
             el.innerHTML = this.getTemplate();
 
-            this.on(el, 'click', this.handleClick.bind(this));
+            linkButton = el.getElementsByClassName('medium-editor-toolbar-anchor-preview-inner');
+            deleteButton = el.getElementsByClassName('medium-editor-toolbar-delete-button');
+
+            this.on(linkButton, 'click', this.handleClick.bind(this));
+            this.on(deleteButton, 'click', this.handleDeleteClick.bind(this));
 
             return el;
         },
@@ -4012,6 +4018,7 @@ MediumEditor.extensions = {};
         getTemplate: function () {
             return '<div class="medium-editor-toolbar-anchor-preview" id="medium-editor-toolbar-anchor-preview">' +
                 '    <a class="medium-editor-toolbar-anchor-preview-inner"></a>' +
+                '    <div class="medium-editor-toolbar-delete-button">&times;</div>' +
                 '</div>';
         },
 
@@ -4125,6 +4132,14 @@ MediumEditor.extensions = {};
             }
 
             this.hidePreview();
+        },
+
+        handleDeleteClick: function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            console.log('kill link');
         },
 
         handleAnchorMouseout: function () {
@@ -6776,6 +6791,7 @@ MediumEditor.extensions = {};
             var elementId = MediumEditor.util.guid();
 
             element.setAttribute('data-medium-editor-element', true);
+            element.classList.add('medium-editor-element');
             element.setAttribute('role', 'textbox');
             element.setAttribute('aria-multiline', true);
             element.setAttribute('data-medium-editor-editor-index', editorId);
@@ -7064,6 +7080,7 @@ MediumEditor.extensions = {};
                 element.removeAttribute('contentEditable');
                 element.removeAttribute('spellcheck');
                 element.removeAttribute('data-medium-editor-element');
+                element.classList.remove('medium-editor-element');
                 element.removeAttribute('role');
                 element.removeAttribute('aria-multiline');
                 element.removeAttribute('medium-editor-index');

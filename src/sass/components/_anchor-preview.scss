@@ -22,3 +22,42 @@
 .medium-editor-anchor-preview-active {
     visibility: visible;
 }
+
+.medium-editor-toolbar-anchor-preview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.medium-editor-anchor-preview a {
+    margin: 0;
+    padding-left: 10px;
+}
+
+.medium-editor-toolbar-delete-button {
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 100%;
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 22px;
+    line-height: 22px;
+    width: 25px;
+    padding: 0;
+    display: block;
+    height: 25px;
+    overflow: hidden;
+
+    &:hover {
+        color: red;
+        background-color: rgba(255,255,255,1);
+    }
+}
+
+/*.medium-editor-anchor-preview {
+    visibility: visible !important;
+}*/
