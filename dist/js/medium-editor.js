@@ -4144,13 +4144,7 @@ MediumEditor.extensions = {};
             var anchorExtension = this.base.getExtensionByName('thxlinker'),
                 activeAnchor = this.activeAnchor;
 
-            // var anchorExtension = this.base.getExtensionByName('anchor'),
-            //     activeAnchor = this.activeAnchor;
-
             if (anchorExtension && activeAnchor) {
-                console.dir(anchorExtension);
-                console.dir(activeAnchor);
-
                 this.base.selectElement(this.activeAnchor);
                 return this.execAction('unlink');
             }
