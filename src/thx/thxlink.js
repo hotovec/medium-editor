@@ -33,19 +33,18 @@ var ThxLinkerButton = MediumEditor.extensions.button.extend({
         window.top.Editor.api.requestLinkLibrary(this, 'handleEditorResponse');
     },
 
+    // called externaly from patched editor - anchorPreview extension
     showForm: function (data) {
-        console.log('show form from linker');
-        console.dir(data);
+        console.log("show form");
+        console.log(data);
+        this.base.saveSelection();
+        window.top.Editor.api.requestLinkLibrary(this, 'handleEditorResponse', data);
     },
 
     handleEditorResponse: function (response) {
-        console.log('response ' + response);
-        console.log(this);
-
         this.base.restoreSelection();
         this.execAction(this.action, response);
         this.base.checkSelection();
-
     },
 
     isDisplayed: function () {
