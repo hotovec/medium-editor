@@ -13,7 +13,7 @@
               "setupTestHelpers" ],
   "sub": true,
   "undef": true,
-  "unused": true,
+  "unused": false,
   "validthis": true,
   "devel":true
 }

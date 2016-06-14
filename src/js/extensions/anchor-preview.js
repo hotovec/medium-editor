@@ -22,8 +22,8 @@
         showWhenToolbarIsVisible: false,
 
         /* showOnEmptyLinks: [boolean]
-        * determines whether the anchor tag preview shows up on links with href="" or href="#something"
-        */
+         * determines whether the anchor tag preview shows up on links with href="" or href="#something"
+         */
         showOnEmptyLinks: true,
 
         init: function () {
@@ -84,7 +84,7 @@
 
         showPreview: function (anchorEl) {
             if (this.anchorPreview.classList.contains('medium-editor-anchor-preview-active') ||
-                    anchorEl.getAttribute('data-disable-preview')) {
+                anchorEl.getAttribute('data-disable-preview')) {
                 return true;
             }
 
@@ -154,7 +154,10 @@
         },
 
         handleClick: function (event) {
-            var anchorExtension = this.base.getExtensionByName('anchor'),
+            event.preventDefault();
+            event.stopPropagation();
+
+            var anchorExtension = this.base.getExtensionByName('thxlinker'),
                 activeAnchor = this.activeAnchor;
 
             if (anchorExtension && activeAnchor) {
@@ -181,11 +184,16 @@
         },
 
         handleDeleteClick: function (event) {
-
             event.preventDefault();
             event.stopPropagation();
 
-            console.log('kill link');
+            var anchorExtension = this.base.getExtensionByName('thxlinker'),
+                activeAnchor = this.activeAnchor;
+
+            if (anchorExtension && activeAnchor) {
+                this.base.selectElement(this.activeAnchor);
+                return this.execAction('unlink');
+            }
         },
 
         handleAnchorMouseout: function () {
